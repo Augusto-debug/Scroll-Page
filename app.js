@@ -54,14 +54,15 @@ scrollLink.forEach((link) => {
     const navHeight = navBar.getBoundingClientRect().height;
     const containerHeight = linksContainer.getBoundingClientRect().height;
     const fixedNav = navBar.classList.contains("fixed-nav");
+    // Aqui subtraimos o valor de navHeight porque quando ocorre o scroll o tamanho da navbar está tampando de ver o começo da sessão.
     let position = element.offsetTop - navHeight;
-    console.log(position);
 
-    // Se o menu não tiver a classe fixed-nav nós subtraimos novamente o valor da altura da navBar porque ao passarmos da altura de 82px a classe fixed-nav é colocada e então modifica o tamanho fazendo com que o scroll passe devido ao tamanho adicionado pela classe.
+    // Se o menu não tiver a classe fixed-nav nós subtraimos novamente o valor da altura da navBar porque ao passarmos da altura de 82px a classe fixed-nav é colocada e então modifica o tamanho fazendo com que o tamanho inicial seja removido pois com a classe estamos saindo do fluxo normal da página e temos que subtrair esse tamanho original para que o scroll ocorra de forma correta.
     if (!fixedNav) {
       position -= navHeight;
     }
 
+    //Aqui estamos dizendo que se for maior que 82 significa que está com o toggle aberto. Então temos que adicionar o tamanho da navbar e o tamanho do container dos links ao position para que ele se extenda até o lugar certo que queremos.
     if (navHeight > 82) {
       position += containerHeight;
     }
