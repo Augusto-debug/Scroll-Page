@@ -57,6 +57,7 @@ scrollLink.forEach((link) => {
     let position = element.offsetTop - navHeight;
     console.log(position);
 
+    // Se o menu não tiver a classe fixed-nav nós subtraimos novamente o valor da altura da navBar porque ao passarmos da altura de 82px a classe fixed-nav é colocada e então modifica o tamanho fazendo com que o scroll passe devido ao tamanho adicionado pela classe.
     if (!fixedNav) {
       position -= navHeight;
     }
